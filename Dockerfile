@@ -1,7 +1,7 @@
 FROM php:7.1-apache
 
 # https://www.drupal.org/node/3060/release
-ENV DRUPAL_VERSION 8.4.0
+ENV DRUPAL_VERSION 8.3.7
 ENV DRUPAL_MD5 e7b1f382d6bd2b18d4b4aca01d335bc0
 
 # Enable Rewrite
@@ -48,7 +48,7 @@ RUN { \
 
 # Download Drupal 8
 WORKDIR /var/www/html
-RUN curl -fSL "https://s3.amazonaws.com/core-drupal8-s3/drupal-8.4.0.tar.gz" -o drupal.tar.gz \
+RUN curl -fSL "https://s3.amazonaws.com/core-drupal8-s3/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
 	&& tar -xz --strip-components=1 -f drupal.tar.gz \
 	&& rm drupal.tar.gz \
 	&& chown -R www-data:www-data sites modules themes
