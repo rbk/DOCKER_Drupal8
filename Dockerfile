@@ -46,6 +46,10 @@ RUN { \
 		echo 'max_execution_time = 0'; \
 	} > /usr/local/etc/php/php.ini
 
+# Add PHP error log
+RUN touch /var/log/phperror.log
+RUN chown www-data:www-data /var/log/phperror.log
+
 # Download Drupal 8
 WORKDIR /var/www/html
 RUN curl -fSL "https://s3.amazonaws.com/core-drupal8-s3/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
